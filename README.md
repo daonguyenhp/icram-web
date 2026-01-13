@@ -68,22 +68,28 @@ This project is built using pure web technologies, focusing on performance and m
 ## 📂 Project Structure
 
 ```text
-icram-web/
-├── index.html          # Entry point (Landing/Home)
-├── focus.html          # Focus Mode (Pomodoro) page
-├── timer.html          # Timer/Stopwatch page
-├── dashboard.html      # Dashboard overlay component
-├── music.html          # Music player overlay component
+ICRAM/
+├── index.html                  # Landing Page (Home Entry Point)
+├── style.css                   # Styles specifically for the Landing Page
+├── material/                   # Static Assets (Images, Icons, SVGs)
 │
-├── css/
-│   ├── style-global.css    # Core variables, resets, and layout
-│   ├── style-focus.css     # Styles specific to Focus Mode
-│   ├── style-timer.css     # Styles specific to Timer Mode
-│   └── style-dashboard.css # Dashboard & Overlay styles
-│
-├── js/
-│   ├── shared-ui.js    # Logic for shared components (Menu, Music, TaskBar)
-│   ├── focus.js        # Logic for Pomodoro timer & SVG ring
-│   └── timer.js        # Logic for Stopwatch & Laps
-│
-└── material/           # SVGs and image assets
+└── client/                     # Main Client-side Application
+    ├── auth/                   # Authentication Module
+    │   ├── login.html          # Login Interface
+    │   └── signup.html         # Registration Interface
+    │
+    └── data/                   # Core Application Modules & Components
+        ├── shared-ui.js        # Shared Logic (Navigation, Music, TaskBar)
+        ├── style-global.css    # Global Design System (Variables, Fonts)
+        │
+        ├── focus.html          # Focus Mode (Pomodoro) View
+        ├── focus.js            # Focus Mode Logic
+        ├── style-focus.css     # Focus Mode Styles
+        │
+        ├── timer.html          # Timer/Stopwatch View
+        ├── timer.js            # Timer Logic
+        ├── style-timer.css     # Timer Styles
+        │
+        ├── dashboard.html      # Dashboard Overlay Component
+        ├── style-dashboard.css # Dashboard Styles
+        └── music.html          # Music Player Component
