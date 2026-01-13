@@ -1,0 +1,31 @@
+<div id="music-overlay" class="music-overlay">
+    <div class="music-box">
+        <div class="music-header">
+            <h3 id="music-title">Select Source</h3>
+            <button id="close-music" class="close-music"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div id="music-source-view" class="source-grid">
+            <div class="source-item" id="btn-source-youtube">
+                <i class="fa-brands fa-youtube youtube-icon"></i>
+                <span>YouTube</span>
+            </div>
+            <div class="source-item" style="opacity: 0.5; cursor: not-allowed;">
+                <i class="fa-brands fa-spotify spotify-icon"></i>
+                <span>Spotify (Soon)</span>
+            </div>
+        </div>
+
+        <div id="music-input-view" class="input-view" style="display: none;">
+            <p>Paste YouTube Video or Playlist Link:</p>
+            <input type="text" id="yt-link-input" class="music-input" placeholder="https://www.youtube.com/watch?v=...">
+            <button id="btn-play-yt" class="play-btn">Play Music</button>
+            <button class="back-btn" onclick="SharedUI.resetMusicView()">Back to sources</button>
+        </div>
+
+        <div id="music-player-view" class="player-view" style="display: none;">
+            <div id="yt-iframe-container"></div>
+            <button class="back-btn" onclick="SharedUI.resetMusicView()">Change Music</button>
+        </div>
+    </div>
+</div>
