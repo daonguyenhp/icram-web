@@ -1,0 +1,29 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .ink-stroke { stroke: #1e293b; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .bar-blue { fill: #a2d9ff; } /* Xanh dương pastel */
+      .bar-green { fill: #9be7d9; } /* Xanh ngọc pastel */
+      .arrow-accent { stroke: #ff9a9e; stroke-width: 3; fill: none;} /* Điểm nhấn hồng */
+      .bg-splash-blue { fill: #cbf1f5; fill-opacity: 0.6; } 
+    </style>
+  </defs>
+
+  <g transform="translate(100, 100) scale(1.3)">
+    <path class="bg-splash-blue" d="M-50,-40 C-20,-60 20,-70 50,-50 C80,-30 90,10 70,40 C50,70 10,80 -20,70 C-50,60 -70,30 -80,0 C-90,-30 -70,-50 -50,-40 Z" />
+    <path class="bg-splash-blue" d="M-40,-30 C-10,-50 30,-60 60,-40 C90,-20 100,20 80,50 C60,80 20,90 -10,80 C-40,70 -60,40 -70,10 C-80,-20 -60,-40 -40,-30 Z" transform="rotate(-30)" fill-opacity="0.4"/>
+  </g>
+
+  <g transform="translate(40, 40)">
+    <rect class="bar-blue ink-stroke" x="10" y="80" width="25" height="40" rx="2" />
+    <rect class="bar-green ink-stroke" x="45" y="50" width="25" height="70" rx="2" />
+    <rect class="bar-blue ink-stroke" x="80" y="20" width="25" height="100" rx="2" />
+    <line class="ink-stroke" x1="0" y1="125" x2="130" y2="125" stroke-width="3"/>
+    <path class="arrow-accent" d="M20,100 L60,60 L90,30 L115,10" marker-end="url(#arrow-head)"/>
+    <defs>
+        <marker id="arrow-head" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10" fill="#ff9a9e" />
+        </marker>
+    </defs>
+  </g>
+</svg>

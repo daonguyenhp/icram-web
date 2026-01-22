@@ -330,3 +330,126 @@ body {
 /* Iframe */
 .player-view iframe { width: 100%; aspect-ratio: 16/9; border-radius: 15px; }
 .back-btn { background: transparent; border: none; color: #64748b; cursor: pointer; font-size: 14px; text-decoration: underline; }
+
+
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100000;
+}
+
+.toast {
+    background: rgba(255, 255, 255, 0.9);
+    border-left: 5px solid #1e293b;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast i {
+    font-size: 20px;
+    color: #4CAF50; /* Màu xanh lá cho thành công */
+}
+
+.mini-player {
+    position: fixed;
+    bottom: 7%;
+    left: 2.5%; 
+    background: rgba(30, 41, 59, 0.9); 
+    color: white;
+    padding: 10px 150px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 9000;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.mini-player.hidden {
+    transform: translateY(200%);
+    opacity: 0;
+}
+
+.mini-info {
+    display: flex;
+    flex-direction: column;
+}
+
+#mini-title {
+    font-weight: 600;
+    font-size: 14px;
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.time-track {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 2px;
+}
+
+/* Hiệu ứng sóng nhạc nhảy múa */
+.music-bars {
+    display: flex;
+    gap: 3px;
+    height: 15px;
+    align-items: flex-end;
+}
+
+.music-bars span {
+    width: 3px;
+    background: #FFC4C4; 
+    animation: bounce 1s infinite;
+}
+
+.music-bars span:nth-child(2) { animation-delay: 0.2s; height: 60%; }
+.music-bars span:nth-child(3) { animation-delay: 0.4s; height: 30%; }
+
+@keyframes bounce {
+    0%, 100% { height: 20%; }
+    50% { height: 100%; }
+}
+
+/* Helper Class cho Logic JS */
+.hidden-view { display: none !important; }
+
+.mini-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-left: auto; /* Đẩy nút sang phải cùng */
+}
+
+.mini-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+.mini-btn i {
+    font-size: 14px;
+}

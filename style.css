@@ -5,21 +5,19 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+    width: 100%;
+
   font-family: "Poppins", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-}
-
-.hero-section {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    color: white;
-    background-color: white;
-
-    background: 
+  background-color: white;
+  
+  background: 
     url(../material/wave.svg),
     linear-gradient(180deg, 
         #FFC4C4 0%,    /* Hồng phấn ấm áp trên cùng */
@@ -28,21 +26,33 @@ body {
         #9FDCD6 100%   /* Kết thúc bằng xanh ngọc (Teal) */
     );
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
 
     background-blend-mode: overlay;
-  
+
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.hero-section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    color: white;
 }
 
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px 50px;
     width: 100%;
-    position: relative;
-    z-index: 10;
+    z-index: 1000;  
 }
 
 .logo {
@@ -57,6 +67,7 @@ body {
     align-items: center;
     gap: 40px;
     padding: 0px 100px;
+    margin-top: 20px;
 }
 
 .nav-links {
@@ -83,40 +94,41 @@ body {
 
 .login-btn {
     text-decoration: none;
-    background-color: transparent;
+    background-color: #1E293B;
     border: 1px solid black;
-    color: #1e293b;
+    color: white;
     padding: 10px 20px;
     border-radius: 30px;
     font-size: 23px;
     letter-spacing: 5px;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
-    -webkit-text-stroke: 1px black;
     transition: all 0.3s ease;
 }
 
 .login-btn:hover {
     background-color: #FFC4C4;
     transform: translateY(-2px);
+    border: 1px solid white;
 }
 
 .hero-content {
     position: absolute;
     top: 45%;
-    left: 45%;
+    left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 70px;
-    font-weight: 400;
+    font-size: 88px;
+    font-weight: 500;
+    letter-spacing: 2px;
     color: #1e293b;
     z-index: 5;
 
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     line-height: 90px;
 }
 
@@ -147,6 +159,13 @@ body {
     margin-bottom: 40px;
 }
 
+.hero-content .content-start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%
+}
+
 .started-btn {
     display: flex;
     font-size: 24px;
@@ -154,7 +173,6 @@ body {
     height: 70px;
     background-color: black;
     opacity: 0.8;
-    -webkit-text-stroke: 1px #1e293b;
     color: white;
     text-decoration: none;
     padding: 20px 35px;
@@ -163,56 +181,23 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin: 650px auto;
     
     transition: all 0.3s ease;
     letter-spacing: 2px;
 }
 
+
 .started-btn:hover {
-    background-color: #2c3e50;
-    transform: translateY(-2px);
+    background-color: #FFC4C4;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 196, 196, 0.8);
+    border: 1px solid white;
 }
 
 .sidebar-right {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    font-size: 12px;
-    opacity: 0.8;
-    right: 30px;
-}
-
-.sidebar-left {
-    color: #1e293b;
-    position: absolute;
-    writing-mode: vertical-lr;
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    font-size: 18px;
-    font-weight: 700;
-    opacity: 0.8;
-    left: 30px;
-}
-
-.social-icons {
-    display: flex;
-    gap: 20px;
-    cursor: pointer;
-}
-
-.sidebar-right {
-    position: absolute;
+    position: fixed;
     right: 5%;
-    top:50%;
+    top: 44%;
     transform: translateY(-50%);
 
     display: flex;
@@ -228,6 +213,28 @@ body {
 
     color: #1e293b;
     z-index: 10;
+}
+
+.sidebar-left {
+    color: #1e293b;
+    position: fixed;
+    writing-mode: vertical-lr;
+    top: 44%;
+    left: 10%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    opacity: 0.8;
+    left: 70px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
 }
 
 .label-start {
@@ -509,4 +516,221 @@ body {
 .signup-btn:hover {
     background-color: #2c3e50;
     transform: translateY(-2px);
+}
+
+
+.container-2 {
+    position: relative;
+    max-width: 1400px;
+    margin: 100px auto;
+    padding: 0 20px;
+}
+
+.sec-02 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.container-2 .card-main {
+    display: flex;
+    gap: 30px;
+}
+
+.container-2 .title .main {
+    font-size: 45px;
+    font-weight: 700;
+    color: #1E293B;
+}
+
+.container-2 .title .sub {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #1E293B;
+}
+
+.card-main .card-sub {
+    color: #1e293b;
+    font-size: 18px;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+
+    border-radius: 20px;
+    padding: 20px 30px 30px 30px;
+    text-align: justify;
+
+}
+
+.card-main .sub-container {
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.card-main .sub-container .icon-rotate{
+    transform: rotate(45deg);
+    font-size: 20px;
+
+    color: white;
+    background: #1e293b;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 20px;
+
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-container .icon-rotate {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sub-container .icon-rotate:hover {
+    background-color: #FFC4C4;
+    transform: rotate(45deg) scale(1.2) translate(3px, -3px);
+    text-shadow: 0 0 8px rgba(255, 196, 196, 0.6);
+}
+
+.card-sub .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.reveal {
+    position: relative;
+    transform: translateY(100px); /* Đẩy xuống dưới 100px */
+    opacity: 0;                   /* Mờ tịt */
+    transition: all 1s ease;      /* Thời gian hiện lên là 1 giây */
+}
+
+/* 2. Trạng thái hiện ra (Khi JS kích hoạt class này) */
+.reveal.active {
+    transform: translateY(0);     /* Về vị trí cũ */
+    opacity: 1;                   /* Hiện rõ 100% */
+}
+
+.subtitle-03 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.sec-03 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 50px;
+    padding-bottom: 350px;
+}
+
+.container-03 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+
+    max-width: 1400px;
+
+    margin: 100px auto;
+    padding: 0 20px;
+}
+
+.container-03 .subtitle-03 {
+    font-size: 18px;
+    color:#1E293B;
+    font-weight: 500px;
+    margin-bottom: 15px;
+}
+
+.container-03 h2 {
+    font-size: 64px;
+    font-weight: 600px;
+    color: #1E293B;
+    margin-bottom: 10px;
+}
+
+.container-03 .sub-main {
+    font-size: 24px;
+    font-weight: 500px;
+    color: #1E293B;
+    margin-bottom: 30px;
+}
+
+.container-03 p {
+    font-size: 18px;
+    font-weight: 500px;
+    color: #1E293B;
+}
+
+.container-03 .describe {
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.info .sub-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.sub-container span {
+    margin-top: 50px;
+    font-weight: 1000px;
+    font-size: 32px;
+    color: cadetblue;
+}
+
+.sub-container p {
+    font-size: 14px;
+    font-weight: 500px;
+    color: #1E293B;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 80px;
+}
+
+.decor-fixed {
+    position: fixed; 
+    z-index: 1;    
+    pointer-events: none; 
+    
+    width: 30vw;     
+    max-width: 400px; 
+    height: auto;    
+    opacity: 0.5;  
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
 }

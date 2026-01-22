@@ -1,0 +1,29 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      /* Stroke màu Xanh Đen giống text web */
+      .ink-stroke { stroke: #1e293b; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      /* Màu tô tông Pastel đậm */
+      .tomato-fill { fill: #ff9a9e; } /* Hồng san hô */
+      .leaf-fill { fill: #a8e6cf; }   /* Xanh mint */
+      /* Vệt màu nước loang nền - Màu hồng phấn nhạt */
+      .bg-splash { fill: #ffdde1; } 
+    </style>
+  </defs>
+
+  <g transform="translate(100, 100) scale(1.3)">
+    <path class="bg-splash" d="M45,-55 C70,-35 85,0 65,35 C45,70 0,85 -35,65 C-70,45 -85,0 -65,-35 C-45,-70 20,-75 45,-55 Z" fill-opacity="0.3" transform="rotate(-20)"/>
+    <path class="bg-splash" d="M30,-40 C55,-20 60,20 40,45 C20,70 -20,60 -45,35 C-70,10 -60,-30 -35,-50 C-10,-70 5,-60 30,-40 Z" fill-opacity="0.4" transform="rotate(10)"/>
+    <path class="bg-splash" d="M20,-30 C40,-10 35,30 10,45 C-15,60 -40,35 -50,10 C-60,-15 -35,-40 -10,-45 C15,-50 0,-50 20,-30 Z" fill-opacity="0.5"/>
+  </g>
+  <g transform="translate(100, 100)">
+    <circle class="tomato-fill" cx="0" cy="10" r="55" />
+    <circle class="ink-stroke" cx="0" cy="10" r="55" />
+    <path class="leaf-fill" d="M0,-45 L-15,-35 L-10,-55 L0,-70 L10,-55 L15,-35 Z" />
+    <path class="ink-stroke" d="M0,-45 L-15,-35 L-10,-55 L0,-70 L10,-55 L15,-35 Z" />
+    <circle fill="#fff" cx="0" cy="10" r="35" stroke="#1e293b" stroke-width="2"/>
+    <path class="ink-stroke" stroke-width="2" d="M0,-20 L0,-15 M15,-5 L10,-2 M20,10 L15,10 M15,25 L10,22 M0,40 L0,35 M-15,25 L-10,22 M-20,10 L-15,10 M-15,-5 L-10,-2" />
+    <path class="ink-stroke" d="M0,10 L-5,-10 L0,-25 L5,-10 Z" fill="#1e293b" />
+    <circle class="ink-stroke" cx="0" cy="10" r="3" fill="#1e293b" />
+  </g>
+</svg>
