@@ -4,17 +4,17 @@
         
         <div class="dash-sidebar">
             <div class="logo-area">
-                <i class="fa-solid fa-layer-group"></i> <span>ICAM</span>
+                <i class="fa-solid fa-layer-group"></i> <span>ICRAM</span>
             </div>
             <ul class="dash-menu">
                 <li id="nav-focus"><i class="fa-solid fa-bullseye"></i> Focus Mode</li>
                 <li id="nav-timers"><i class="fa-solid fa-clock"></i> Timers Mode</li>
-                <li><i class="fa-solid fa-list-check"></i> Tasks</li>
-                <li><i class="fa-regular fa-file"></i> Theme</li>
-                <li><i class="fa-solid fa-chart-pie"></i> Analytics</li>
-                <li><i class="fa-solid fa-bell"></i> Notifications</li>
-                <li><i class="fa-solid fa-user"></i> Profile</li>
-          
+                <li class="nav-divider"></li>
+                <li id="nav-profile"><i class="fa-solid fa-user"></i> Profile</li>
+                <li id="nav-tasks"><i class="fa-solid fa-list-check"></i> Tasks</li>
+                <li id="nav-themes"><i class="fa-regular fa-file"></i> Theme</li>
+                <li id="nav-analytics"><i class="fa-solid fa-chart-pie"></i> Analytics</li>
+                <li id="nav-notifications"><i class="fa-solid fa-bell"></i> Notifications</li>
             </ul>
             <div class="upgrade-box">
                 <p>Upgrade to Premium</p>
@@ -32,25 +32,27 @@
                 </div>
             </div>
 
-            <div class="welcome-banner">
-                <div>
-                    <h2>Welcome Back!</h2>
-                    <p>Check your daily tasks and schedules</p>
-                    <button class="new-task-btn">
-                        <span>New Task</span>
-                    </button>
-                    <button class="discover-btn">Discover</button>
+            <div id="dynamic-content-area">
+                <div class="welcome-banner">
+                    <div>
+                        <h2>Welcome Back!</h2>
+                        <p>Check your daily tasks and schedules</p>
+                        <button class="new-task-btn">
+                            <span>New Task</span>
+                        </button>
+                        <button class="discover-btn">Discover</button>
+                    </div>
                 </div>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>In Progress</h3>
-                    <h2 style="color: #3b82f6;">6</h2>
-                </div>
-                <div class="stat-card">
-                    <h3>Completed</h3>
-                    <h2 style="color: #10b981;">15</h2>
+    
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>In Progress</h3>
+                        <h2 style="color: #3b82f6;">6</h2>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Completed</h3>
+                        <h2 style="color: #10b981;">15</h2>
+                    </div>
                 </div>
             </div>
         </div>

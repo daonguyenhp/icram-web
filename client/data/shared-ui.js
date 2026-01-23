@@ -54,6 +54,65 @@ const SharedUI = {
         </div>
     `,
 
+    tasksPageHTML: `
+        <div class="main-content-wrapper fade-in">
+            <div class="task-header">
+                <div>
+                    <h1 class="page-title">My Tasks</h1>
+                    <div class="date-display" id="today-date">Loading date...</div>
+                </div>
+                </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon icon-purple"><i class="fa-solid fa-hourglass-half"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">In Progress</span>
+                        <h3 class="stat-number" id="count-pending">0</h3>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon icon-green"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Completed</span>
+                        <h3 class="stat-number" id="count-completed">0</h3>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-task-container">
+                <div class="input-group glass-effect">
+                    <input type="text" id="main-task-input" placeholder="What needs to be done today?">
+                    <button id="main-add-btn">
+                        <i class="fa-solid fa-plus"></i> New Task
+                    </button>
+                </div>
+            </div>
+
+            <div class="task-body">
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">All Tasks</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="completed">Done</button>
+                </div>
+
+                <ul class="task-list" id="main-task-list">
+                    </ul>
+                
+                <div id="empty-state" class="hidden">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4076/4076432.png" alt="Empty" width="80" style="opacity: 0.5; margin-bottom: 10px;">
+                    <p>No tasks found. Enjoy your day!</p>
+                </div>
+            </div>
+        </div>
+    `,
+
+    homePageHTML: '',
+
 
     init: function() {
         // Render Góc phải
@@ -88,6 +147,7 @@ const SharedUI = {
         this.loadDashboardContent();
         this.loadMusicPlayer();
         this.attachMiniPlayerEvents();
+        this.loadDashboardFrame();
     },
 
     loadYouTubeAPI: function() {
@@ -430,7 +490,25 @@ const SharedUI = {
 
     },
 
-    highlightCurrentPage: function() {
+    loadDashboardFrame: function() {
+        fetch('dashboard.html')
+            .then(res => res.text())
+            .then(html => {
+                const div = document.createElement('div');
+                div.innerHTML = html;
+                document.body.appendChild(div);
+
+                const contentArea = document.getElementById('dynamic-content-area');
+                if (contentArea) {
+                    this.homePageHTML = contentArea.innerHTML;
+                }
+                this.attachDashboardLogic();
+                this.highlightCurrentPage(null);
+            })
+            .catch(err => console.error(err));
+    },
+
+    highlightCurrentPage: function(activeTabId = null) {
         const path = window.location.pathname;
 
         const navFocus = document.getElementById('nav-focus');
@@ -449,6 +527,21 @@ const SharedUI = {
                 navFocus.classList.add('active');
             }
         }
+
+        const spaTabs = ['nav-profile', 'nav-tasks', 'nav-themes', 'nav-analytics', 'nav-notifications'];
+    
+        spaTabs.forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.classList.remove('active');
+        });
+
+        if (activeTabId) {
+            const el = document.getElementById(activeTabId);
+            if (el) el.classList.add('active');
+        } else {
+            const navProfile = document.getElementById('nav-profile');
+            if (navProfile) navProfile.classList.add('active');
+        }
     },
 
     attachDashboardLogic: function() {
@@ -458,6 +551,21 @@ const SharedUI = {
 
         const navFocus = document.getElementById('nav-focus');
         const navTimers = document.getElementById('nav-timers');
+        const navProfile = document.getElementById('nav-profile');
+        const navTasks = document.getElementById('nav-tasks');
+        const navThemes = document.getElementById('nav-themes');
+        const navAnalytics = document.getElementById('nav-analytics');
+        const navNotifications = document.getElementById('nav-notifications');
+        
+        // const logoArea = document.querySelector('.logo-area');
+        // if(logoArea) {
+        //     logoArea.style.cursor = 'pointer';
+        //     logoArea.addEventListener('click', () => {
+        //         this.switchContent('home');
+        //         this.highlightNav(null); // Tắt active ở menu
+        //     });
+        // }
+
 
         if (settingsBtn && overlay && closeBtn) {
             settingsBtn.addEventListener('click', () => {
@@ -487,7 +595,219 @@ const SharedUI = {
                     window.location.href = 'timer.html';
                 });
             }
+
+            if (navProfile) {
+                navProfile.addEventListener('click', () => {
+                    this.switchContent('home');
+                });
+            }
+
+            if (navTasks) {
+                navTasks.addEventListener('click', () => {
+                    this.switchContent('tasks');
+                });
+            }
+
+            if (navThemes) {
+                navThemes.addEventListener('click', () => {
+                    this.switchContent('themes');
+                });
+            }
+
+            if (navAnalytics) {
+                navAnalytics.addEventListener('click', () => {
+                    this.switchContent('analytics');
+                });
+            }
+
+            if (navNotifications) {
+                navNotifications.addEventListener('click', () => {
+                    this.switchContent('notifications');
+                });
+            }
         }
+    },
+
+    switchContent: function(page) {
+        const contentArea = document.getElementById('dynamic-content-area');
+        if (!contentArea) return;
+
+        // Hiệu ứng mờ dần (Fade in)
+        contentArea.style.opacity = '0';
+        
+        setTimeout(() => {
+            if (page === 'tasks') {
+                contentArea.innerHTML = this.tasksPageHTML;
+                this.initTaskPageLogic(); // Kích hoạt logic checkbox, add, delete...
+                this.highlightCurrentPage('nav-tasks');
+            } 
+            else if (page === 'themes') {
+                contentArea.innerHTML = this.themesPageHTML;
+                this.highlightCurrentPage('nav-themes');
+            }
+            else if (page === "analytics") {
+                contentArea.innerHTML = this.themesPageHTML;
+                this.highlightCurrentPage('nav-analytics');
+            }
+            else if (page === "notifications") {
+                contentArea.innerHTML = this.themesPageHTML;
+                this.highlightCurrentPage('nav-notifications');
+            }
+            else if (page === 'home') {
+                contentArea.innerHTML = this.homePageHTML;
+                this.highlightCurrentPage(null);
+            }
+            
+            // Hiện lại từ từ
+            contentArea.style.opacity = '1';
+        }, 200); // Chờ 200ms để tạo hiệu ứng mượt
+    },
+
+    initTaskPageLogic: function() {
+        const input = document.getElementById('main-task-input');
+        const addBtn = document.getElementById('main-add-btn');
+        const taskList = document.getElementById('main-task-list');
+        const emptyState = document.getElementById('empty-state');
+        
+        // Stats
+        const countPending = document.getElementById('count-pending');
+        const countCompleted = document.getElementById('count-completed');
+        const progressFill = document.getElementById('progress-fill');
+        const dateDisplay = document.getElementById('today-date');
+
+        // Set Date Header
+        if(dateDisplay) {
+            const now = new Date();
+            dateDisplay.innerText = now.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' });
+        }
+
+        let tasks = JSON.parse(localStorage.getItem('icram-tasks')) || [];
+
+        // --- HÀM RENDER (QUAN TRỌNG) ---
+        const render = (filter = 'all') => {
+            if (!taskList) return;
+            taskList.innerHTML = '';
+            
+            let filteredTasks = tasks;
+            if (filter === 'pending') filteredTasks = tasks.filter(t => !t.completed);
+            if (filter === 'completed') filteredTasks = tasks.filter(t => t.completed);
+
+            if (filteredTasks.length === 0) {
+                if(emptyState) emptyState.classList.remove('hidden');
+            } else {
+                if(emptyState) emptyState.classList.add('hidden');
+            }
+
+            filteredTasks.forEach(task => {
+                const li = document.createElement('li');
+                // Thêm class expanded nếu bạn muốn lưu trạng thái mở (ở đây mặc định đóng)
+                li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                
+                // Format thời gian
+                const timeString = new Date(task.id).toLocaleString('en-US', { hour: '2-digit', minute:'2-digit', day:'numeric', month:'short' });
+
+                li.innerHTML = `
+                    <div class="task-main-row">
+                        <label class="custom-checkbox" onclick="event.stopPropagation()">
+                            <input type="checkbox" ${task.completed ? 'checked' : ''}>
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <div class="task-content">
+                            <span class="task-text">${task.text}</span>
+                        </div>
+                        
+                        <i class="fa-solid fa-chevron-down expand-icon"></i>
+                        
+                        <button class="delete-btn" onclick="event.stopPropagation()">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="task-details">
+                        <div class="timestamp">
+                            <i class="fa-regular fa-clock"></i> Created at: ${timeString}
+                        </div>
+                        </div>
+                `;
+
+                // 1. Xử lý Checkbox
+                const checkbox = li.querySelector('input');
+                checkbox.addEventListener('change', () => {
+                    task.completed = !task.completed;
+                    saveAndRender();
+                });
+
+                // 2. Xử lý Xóa
+                const delBtn = li.querySelector('.delete-btn');
+                delBtn.addEventListener('click', () => {
+                    if (confirm('Delete this task?')) {
+                        tasks = tasks.filter(t => t.id !== task.id);
+                        saveAndRender();
+                    }
+                });
+
+                // 3. Xử lý Mở rộng (Accordion)
+                const mainRow = li.querySelector('.task-main-row');
+                mainRow.addEventListener('click', () => {
+                    li.classList.toggle('expanded');
+                });
+
+                taskList.appendChild(li);
+            });
+
+            updateStats();
+        };
+
+        const saveAndRender = () => {
+            localStorage.setItem('icram-tasks', JSON.stringify(tasks));
+            const activeFilterBtn = document.querySelector('.filter-btn.active');
+            const currentFilter = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
+            render(currentFilter);
+        };
+
+        const updateStats = () => {
+            const completed = tasks.filter(t => t.completed).length;
+            const total = tasks.length;
+            const pending = total - completed;
+            
+            if(countPending) countPending.innerText = pending;
+            if(countCompleted) countCompleted.innerText = completed;
+            
+            // Cập nhật thanh Progress Bar
+            if(progressFill) {
+                const percent = total === 0 ? 0 : (completed / total) * 100;
+                progressFill.style.width = `${percent}%`;
+            }
+        };
+
+        const addTask = () => {
+            const text = input.value.trim();
+            if (text) {
+                tasks.unshift({
+                    id: Date.now(), // Dùng ID làm timestamp luôn
+                    text: text,
+                    completed: false
+                });
+                input.value = '';
+                saveAndRender();
+            }
+        };
+
+        if(addBtn) addBtn.addEventListener('click', addTask);
+        if(input) input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addTask();
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                render(btn.dataset.filter);
+            });
+        });
+
+        render();
     },
 
     attachTaskLogic: function() {
