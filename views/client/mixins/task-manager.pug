@@ -1,0 +1,45 @@
+.fade-in
+  .task-header
+    div
+      h1.page-title My Tasks
+      .date-display#today-date Loading date...
+
+  //- Thống kê (In Progress / Completed)
+  .stats-row
+    .stat-card
+      .stat-icon.icon-purple
+        i.fa-solid.fa-hourglass-half
+      .stat-info
+        span.stat-label In Progress
+        h3#count-pending.stat-number 0
+        
+    .stat-card
+      .stat-icon.icon-green
+        i.fa-solid.fa-circle-check
+      .stat-info
+        span.stat-label Completed
+        h3#count-completed.stat-number 0
+      .progress-bar-bg
+        #progress-fill.progress-bar-fill(style="width: 0%")
+
+  //- Ô nhập Task mới
+  .add-task-container
+    .input-group
+      input#main-task-input(type="text" placeholder="What needs to be done today?")
+      button#main-add-btn
+        i.fa-solid.fa-plus
+        |  New Task
+
+  //- Vùng hiển thị danh sách
+  .task-body
+    .filter-tabs
+      button.filter-btn.active(data-filter="all") All Tasks
+      button.filter-btn(data-filter="pending") Pending
+      button.filter-btn(data-filter="completed") Done
+
+    ul#main-task-list.task-list
+
+    //- Trạng thái rỗng (Khi không có task)
+    #empty-state.hidden(style="text-align: center; padding: 20px;")
+      img(src="https://cdn-icons-png.flaticon.com/512/4076/4076432.png" alt="Empty" width="80" style="opacity: 0.4; margin-bottom: 10px;")
+      p(style="color: #6b7280; font-size: 15px;") No tasks found. Enjoy your day!

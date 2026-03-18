@@ -1,0 +1,119 @@
+extends ../../layouts/default.pug
+
+block append styles
+    link(rel="stylesheet", href="/css/pages/home.css")
+    link(rel="stylesheet", href="/css/partials/header.css")
+    link(rel="stylesheet", href="/css/partials/footer.css")
+    
+block main
+    //- SECTION 1: HERO
+    section#section-1.sec-01
+        .hero-section
+            .hero-content
+                .hero-text
+                    p.subtitle 
+                        span.line 
+                        | A WEB FOCUS
+                    h1 Get Ready for <br> Focused Learning
+                    p.description
+                        | Experience a timer that respects your workflow. 
+                        | Whether classic 25-minute sprints or deep flow states.
+                
+                .cta-group
+                    a.started-btn(href="/stopwatch") STARTED
+                    p.scroll-down scroll down ↓
+
+                .hero-image
+                    img(src="/images/pages/home/hero-illustration.svg", alt="Focus Timer Illustration")
+
+            .sidebar-left
+                p Follow us
+                .social-icons
+                    i.fa-brands.fa-instagram.icon
+                    i.fa-brands.fa-twitter.icon
+
+            .sidebar-right
+                span.label-start Start
+                span.label-number.active(data-target="#section-1") 01
+                span.label-number(data-target="#section-2") 02
+                span.label-number(data-target="#section-3") 03
+
+    //- SECTION 2: POMODORO
+    section#section-2.sec-02
+        .container-2
+            .title.reveal
+                h3.main Smart Pomodoro - Stopwatch
+                p.sub Boost your efficiency with the 25/5 rhythm. Customize intervals to match your personal flow.
+
+            .row.card-main
+                .col-12.col-md-6.col-lg-4
+                    .card-sub.reveal
+                        .icon
+                            img(src="/images/pages/home/timer.svg", alt="timer")
+                        .sub-container
+                            p.sub-sub-title Adaptive Focus Timer
+                            i.fa.fa-arrow-up.icon-rotate
+                        p
+                            | Experience a timer that respects your unique workflow. Whether you prefer the classic Pomodoro 25-minute 
+                            | sprints or deep 90-minute flow states, our adaptive timer lets you customize intervals effortlessly. 
+                            | It’s not just a countdown; it’s a commitment to single-tasking that anchors your attention exactly where it needs to be
+                
+                .col-12.col-md-6.col-lg-4
+                    .card-sub.reveal
+                        .icon
+                            img(src="/images/pages/home/music.svg", alt="music")
+                        .sub-container
+                            p.sub-sub-title Immersive Soundscapes
+                            i.fa.fa-arrow-up.icon-rotate
+                        p 
+                            | Silence the chaos of the outside world with a curated library of audio engineered for focus. 
+                            | Choose from soothing Lo-fi beats to relax your mind, or scientifically-tuned Binaural beats 
+                            | to stimulate concentration. Transform any noisy environment into your personal sanctuary of productivity with just one click.
+                
+                .col-12.col-md-6.col-lg-4
+                    .card-sub.reveal
+                        .icon
+                            img(src="/images/pages/home/static.svg", alt="static")
+                        .sub-container
+                            p.sub-sub-title Insightful
+                            i.fa.fa-arrow-up.icon-rotate
+                        p 
+                            | Visualize your effort and understand your habits like never before. Our advanced dashboard tracks your 
+                            | daily streaks, measures total focus hours, and identifies your peak performance times. Don't just work harder; 
+                            | use data-driven insights to work smarter and celebrate every milestone of your growth journey.
+
+    //- SECTION 3: FOCUS
+    section#section-3.sec-03.reveal
+        .container-03.reveal
+            .subtitle-03
+                i.fa-solid.fa-wand-magic-sparkles
+                p Master your attention
+
+            h2 Focus: Your Competitive Edge
+            p.sub-main We Architect Your Environment for Peak Mental Performance.
+            p.describe.
+                In an economy of attention, your ability to focus is your greatest asset. By combining scientifically-proven timer methods with immersive audio environments, we help you eliminate noise and enter the flow state instantly.
+
+            .row.info
+                .col-6.col-md-3.reveal
+                    .sub-container
+                        span 00%
+                        p Revenue Growth
+                .col-6.col-md-3.reveal
+                    .sub-container
+                        span 0X
+                        p Speed to Market
+                .col-6.col-md-3.reveal
+                    .sub-container
+                        span 00%
+                        p New Orders
+                .col-6.col-md-3.reveal
+                    .sub-container
+                        span 10+
+                        p Active Users
+
+    //- DECORATIONS
+    img.decor-fixed.bottom-left(src="/images/pages/home/decoration-left.svg", alt="")
+    img.decor-fixed.bottom-right(src="/images/pages/home/decoration-right.svg", alt="")
+
+    script(src='/js/pages/home/home.js')

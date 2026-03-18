@@ -1,0 +1,294 @@
+/* =========================================
+   BIẾN MÀU CHUNG (Dùng màu của ICRAM)
+   ========================================= */
+:root {
+    --primary-dark: #1E293B; /* Xanh than sang trọng */
+    --primary-light: #334155;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --bg-gray: #f8fafc;
+    --border-color: #e2e8f0;
+}
+
+
+/* =========================================
+   LAYOUT CHIA ĐÔI MÀN HÌNH (SPLIT SCREEN)
+   ========================================= */
+/* Bọc toàn bộ form, cách Header/Footer ra một chút để không bị dính */
+/* --- TÌM VÀ SỬA ĐOẠN NÀY DÀNH CHO MÁY TÍNH --- */
+.auth-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    
+    /* Chuyển margin từ Pug sang đây */
+    margin-top: 100px !important; 
+    margin-bottom: 30px !important;
+    margin-left: auto;
+    margin-right: auto;
+    
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-height: 500px !important;
+}
+
+/* Phần Banner (Hình/Màu nền) */
+.auth-banner {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #475569 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.auth-banner h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.auth-banner p {
+    font-size: 1rem;
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+/* Phần Nội dung Form */
+.auth-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 40px !important;
+    background: #ffffff;
+}
+
+.auth-header {
+    margin-bottom: 20px !important;
+}
+
+.auth-header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+.auth-header p {
+    color: var(--text-muted);
+    margin-top: 5px;
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   FORM INPUT & BUTTONS
+   ========================================= */
+.auth-form .input-group {
+    margin-bottom: 15px !important;
+}
+
+.auth-form label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-light);
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 10px 15px !important;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.1);
+}
+
+.auth-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+}
+
+.auth-options a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Các Nút Bấm chính */
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-dark);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0f172a;
+}
+
+/* Nút Google / Social */
+.social-divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.social-divider::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background: var(--border-color);
+    z-index: 1;
+}
+
+.social-divider span {
+    background: #fff;
+    padding: 0 15px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-google {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.btn-google:hover {
+    background: var(--bg-gray);
+    border-color: #cbd5e1;
+}
+
+.btn-google i {
+    font-size: 1.2rem;
+    color: #EA4335;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.auth-footer a {
+    color: var(--primary-dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* 1. Trạng thái mặc định: Ẩn con mắt đi */
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #94a3b8;
+    z-index: 10;
+    padding: 5px;
+    
+    /* Bí kíp tàng hình ở đây sếp nhé */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out; /* Hiệu ứng hiện ra mượt mà */
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+/* 2. Trạng thái hiện: Khi click vào ô (focus) HOẶC khi ô đã có chữ */
+.password-wrapper:focus-within .toggle-password,
+.password-wrapper input:not(:placeholder-shown) ~ .toggle-password {
+    opacity: 1;
+    visibility: visible;
+}
+
+.toggle-password:hover {
+    color: #3b82f6; 
+}
+
+/* Chừa chỗ trống bên phải để chữ không bị đè lên con mắt khi nó hiện ra */
+.password-wrapper input {
+    padding-right: 45px !important; 
+}
+
+/* Ép ô input chừa chỗ trống bên phải để chữ không đè lên con mắt */
+.auth-form input[type="password"],
+.auth-form input[type="text"] {
+    padding-right: 40px !important; 
+}
+
+/* =========================================
+   ĐIỆN THOẠI RESPONSIVE (UI xịn xò trên Mobile)
+   ========================================= */
+/* =========================================
+   ĐIỆN THOẠI RESPONSIVE (Trị dứt điểm bệnh đè form)
+   ========================================= */
+@media (max-width: 768px) {
+    .auth-wrapper { 
+        flex-direction: column !important; /* Xếp dọc */
+        margin-top: 130px !important; /* Đẩy xuống tránh cái Header bị lẹm */
+        margin-bottom: 40px !important;
+        width: 90% !important; /* Không ép cứng width nữa, cho nó co giãn theo màn hình */
+        min-height: auto !important; /* Hủy giới hạn chiều cao để form không bị bóp */
+    }
+    
+    /* CẮT BỎ BANNER: Giấu cái phần trang trí đi để màn hình thoáng đãng */
+    .auth-banner { 
+        display: none !important; 
+    }
+    
+    /* Nới lỏng không gian cho form nhập liệu */
+    .auth-content { 
+        padding: 40px 25px !important; 
+    }
+    
+    /* Chỉnh chữ nhỏ lại xíu cho khỏi rớt dòng */
+    .auth-header h1 {
+        font-size: 1.6rem !important;
+    }
+}

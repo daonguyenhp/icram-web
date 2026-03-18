@@ -1,0 +1,90 @@
+:root {
+    --primary-color: #6366f1; 
+    --primary-hover: #4f46e5;
+    --primary-dark: #1e293b;
+    --text-gray: #64748b;
+    --text-light: #94a3b8;
+    
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    
+    --font-main: "Poppins", sans-serif;
+    --transition-speed: 0.3s ease;
+}
+
+body {
+    background-color: #f1f5f9; 
+    overflow-x: hidden; /* Chặn cuộn ngang */
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh; /* Đảm bảo body luôn cao ít nhất bằng màn hình */
+}
+
+.main-layout {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 50px; 
+    
+    background: 
+        url(../../images/pages/timer/timer-section.svg),
+        radial-gradient(circle at 10% 20%, rgba(255, 196, 196, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.2) 0%, transparent 40%),
+        linear-gradient(180deg, #Fdfbfb 0%, #ebedee 100%);
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.glass-container {
+    width: min(90%, 800px);
+    min-height: 600px;
+    padding: 40px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: var(--glass-border);
+    border-radius: 30px;
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.hidden { display: none !important; }
+.fade-in { animation: fadeIn 0.3s ease-in-out; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.top-left-icons, 
+.top-right-icons {
+    position: fixed;
+    top: 40px;
+    display: flex;
+    gap: 30px;
+    z-index: 50;
+}
+.top-left-icons { left: 50px; }
+.top-right-icons { right: 50px; }
+
+.icon-btn {
+    width: 45px; height: 45px;
+    border: none; background: rgba(255, 255, 255, 0.8);
+    color: var(--text-gray); font-size: 18px;
+    cursor: pointer; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.icon-btn:hover {
+    background: var(--primary-color); color: white;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 10px 15px rgba(99, 102, 241, 0.3);
+}

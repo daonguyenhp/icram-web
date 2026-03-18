@@ -1,0 +1,49 @@
+.analytics-container
+  h2.analytics-title Productivity Analytics
+
+  //- 1. Thẻ thống kê nhanh
+  .stats-row(style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));") 
+    
+    .stat-card
+      .stat-icon.icon-red
+        i.fa-solid.fa-fire
+      .stat-info
+        span.stat-label Focus Time (Today)
+        p#stat-today-time.stat-number 0 mins
+        
+    .stat-card
+      .stat-icon.icon-green
+        i.fa-solid.fa-check-double
+      .stat-info
+        span.stat-label Sessions Completed
+        p#stat-total-sessions.stat-number 0
+        
+    .stat-card
+      .stat-icon.icon-purple
+        i.fa-solid.fa-crown
+      .stat-info
+        span.stat-label Top Mode
+        p#stat-top-mode.stat-number -
+
+  //- 2. Khu vực Biểu đồ (Dành cho Chart.js)
+  .charts-grid
+    .chart-card
+      h3 Focus Time (Last 7 Days)
+      .canvas-container
+        canvas#weeklyChart
+        
+    .chart-card
+      h3 Mode Distribution
+      .canvas-container
+        canvas#modeChart
+
+  //- 3. Khu vực AI Mentor (Chuẩn bị cho bước tiêp theo)
+  .ai-mentor-card
+    .ai-header
+      i.fa-solid.fa-robot
+      h3 AI Mentor Insights
+    .ai-content
+      p#ai-insight-text Chào sếp! Em đang chờ dữ liệu để phân tích thói quen học tập của sếp đây...
+      button#btn-ask-ai.btn-ai 
+        i.fa-solid.fa-wand-magic-sparkles 
+        |  Analyze My Data

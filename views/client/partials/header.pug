@@ -1,0 +1,32 @@
+header
+    nav.navbar.navbar-expand-lg.custom-navbar.fixed-top
+        .container
+            //- Logo
+            a.navbar-brand.logo(href="/") Focus Web :3
+
+            //- Three-line button for mobile
+            button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav")
+                span.fa-solid.fa-bars-staggered.navbar-toggler-icon-custom
+      
+            //- Main Menu
+            .collapse.navbar-collapse#navbarNav
+                ul.navbar-nav.nav-links.ms-auto
+                    li.nav-item
+                        a.nav-link(href="/features") FEATURES
+                    li.nav-item
+                        a.nav-link(href="/pricing") PRICING
+                    li.nav-item
+                        a.nav-link(href="/blog") BLOG
+                    li.nav-item
+                        a.nav-link(href="/about-us") ABOUT US
+        
+                .nav-actions.d-flex.flex-column.flex-lg-row.gap-2.mt-3.mt-lg-0.ms-lg-5
+                if user
+                    .user-info
+                        span.user-greeting(title=user.fullName) Xin chào, #{user.fullName}
+                        a.btn-logout(href="/auth/logout") 
+                            i.fa-solid.fa-arrow-right-from-bracket 
+                            |  Đăng xuất
+                else
+                    a.login-signup-btn(href="/login", style="text-align: center;") LOG IN
+                    a.login-signup-btn(href="/signup", style="text-align: center;") SIGN UP

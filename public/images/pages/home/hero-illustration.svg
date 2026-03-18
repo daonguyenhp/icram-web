@@ -1,0 +1,57 @@
+<svg width="600" height="500" viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="ink-blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+    </filter>
+    
+    <linearGradient id="ink-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#ink-blur)" opacity="0.5">
+    <path fill="url(#ink-gradient)">
+      <animate attributeName="d" 
+        dur="10s" 
+        repeatCount="indefinite"
+        values="M432.5,348.5Q394,447,287.5,437.5Q181,428,127,339Q73,250,137.5,166Q202,82,306,87Q410,92,455,196Q500,300,432.5,348.5Z;
+                M410,360Q350,460,260,430Q160,400,120,310Q80,220,150,150Q220,80,320,90Q420,100,450,210Q480,320,410,360Z;
+                M432.5,348.5Q394,447,287.5,437.5Q181,428,127,339Q73,250,137.5,166Q202,82,306,87Q410,92,455,196Q500,300,432.5,348.5Z" />
+    </path>
+  </g>
+
+  <path d="M300,120 C350,120 400,150 420,200 C435,260 410,320 370,360 C320,400 250,410 200,380 C150,350 130,280 140,220" 
+        stroke="#1e293b" stroke-width="6" stroke-linecap="round" fill="none" stroke-dasharray="15 10 30 10" opacity="0.8"/>
+
+  <g>
+    <circle cx="290" cy="260" r="8" fill="#1e293b" />
+
+    <line x1="290" y1="260" x2="290" y2="190" stroke="#1e293b" stroke-width="8" stroke-linecap="round">
+      <animateTransform attributeName="transform"
+                          type="rotate"
+                          from="0 290 260"
+                          to="360 290 260"
+                          dur="60s"
+                          repeatCount="indefinite"/>
+    </line>
+
+    <line x1="290" y1="260" x2="380" y2="260" stroke="#ff6b6b" stroke-width="6" stroke-linecap="round">
+      <animateTransform attributeName="transform"
+                          type="rotate"
+                          from="0 290 260"
+                          to="360 290 260"
+                          dur="10s"
+                          repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <circle cx="180" cy="200" r="4" fill="#6366f1" opacity="0.6">
+    <animate attributeName="cy" values="200;190;200" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="420" cy="320" r="3" fill="#ff6b6b" opacity="0.8">
+    <animate attributeName="cy" values="320;330;320" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>

@@ -1,0 +1,73 @@
+extends ../../layouts/default-new.pug
+
+include ../../mixins/follow-us.pug
+
+block append styles
+    link(rel="stylesheet", href="/css/pages/stopwatch.css")
+    link(rel="stylesheet", href="/css/layout-timer.css")
+    link(rel="stylesheet", href="/css/partials/music-player.css")
+    link(rel="stylesheet", href="/css/partials/task-bar.css")
+    link(rel="stylesheet", href="/css/mixins/dashboard.css")
+    link(rel="stylesheet", href="/css/mixins/task-manager.css")
+    link(rel="stylesheet", href="/css/mixins/alert.css")
+    link(rel="stylesheet", href="/css/mixins/analytics.css")
+
+block main
+
+    .main-layout.container-fluid.d-flex.flex-column.justify-content-center.align-items-center.min-vh-100.position-relative
+      //- Top Icons (Placeholder)
+      +followUs()
+      include ../../partials/music-player.pug
+      include ../../partials/right-header.pug
+      include ../../mixins/dashboard.pug
+
+      .row.w-100.justify-content-center
+        .col-12.col-lg-10.d-flex.flex-column.align-items-center
+          
+          //- Header Text
+          .timer-content.text-center
+            p.timer-subtitle
+              | Don't stop when you're tired. 
+              br
+              | Stop when you're done
+
+          //- Main Timer Card
+          .timer-container
+            //- Card Header
+            .timer-header
+              span#mode-title.mode-title StopWatch Mode
+              button#edit-mode-btn.edit-mode-btn
+                i.fa-solid.fa.fa-pen
+
+            //- Digital Clock
+            .digital-timer
+              h1#time-display.time-display 00:00:00
+              p#sub-timer.sub-timer Current: 00:00:00
+
+            //- Control Buttons
+            .controls-btn
+              button#start-btn.start-btn
+                i.fa-solid.fa-play.me-2
+                | START
+              
+              button#lap-btn.lap-btn
+                | LAP
+              
+              button#reset-btn.reset-btn
+                i.fa-solid.fa-rotate-right
+
+          //- Task Slot
+          #task-bar-slot.mt-5
+
+
+      include ../../partials/task-bar.pug
+
+    script(src='/js/helpers/inline-edit.js')
+    //- GỌI CLASS POMODORO TIMER TỪ FILE JS BÊN NGOÀI
+    script(type="module").
+        import { StopwatchTimer } from '/js/pages/stopwatch/stopwatch.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            new StopwatchTimer();
+        });
+    script(type="module", src='/js/pages/main-timer.js')

@@ -1,0 +1,190 @@
+/* =========================================
+   1. OVERLAY & POPUP (GIỮ NGUYÊN)
+   ========================================= */
+.music-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(5px);
+    z-index: 9999; display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+}
+.music-overlay.active { opacity: 1; visibility: visible; }
+
+.music-box {
+    width: 500px; background: white; border-radius: 24px; padding: 30px; text-align: center;
+    transform: scale(0.9); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.music-overlay.active .music-box { transform: scale(1); }
+
+.music-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.music-header h3 { font-size: 18px; font-weight: 700; color: #1e293b; }
+.close-music {
+    background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; 
+    cursor: pointer; transition: 0.2s; color: #64748b; display: flex; align-items: center; justify-content: center;
+}
+.close-music:hover { background: #fee2e2; color: #ef4444; }
+
+.source-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.source-item {
+    background: #f8fafc; padding: 25px; border-radius: 16px; border: 2px solid transparent;
+    cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.source-item:hover { border-color: #6366f1; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.source-item i { font-size: 32px; }
+.youtube-icon { color: #ef4444; } .spotify-icon { color: #1db954; }
+
+.input-view { display: flex; flex-direction: column; gap: 15px; }
+.music-input { 
+    width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #e2e8f0; outline: none; 
+    font-family: sans-serif; transition: 0.2s;
+}
+.music-input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); }
+.play-btn { 
+    background: #6366f1; color: white; border: none; padding: 14px; 
+    border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.2s;
+}
+.play-btn:hover { background: #4f46e5; transform: translateY(-1px); }
+.back-btn { background: transparent; border: none; color: #64748b; margin-top: 10px; cursor: pointer; text-decoration: underline; }
+
+
+/* =========================================
+   2. MINI PLAYER (WIDGET ĐÃ FIX LỖI)
+   ========================================= */
+.mini-player {
+    position: fixed; bottom: 30px; left: 30px;
+    
+    /* Trạng thái thu nhỏ */
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    
+    background: rgba(235, 237, 240, 0.9);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    /* QUAN TRỌNG: Flex row để nằm ngang */
+    display: flex; 
+    flex-direction: row !important;
+    align-items: center; 
+    justify-content: center; 
+    flex-wrap: nowrap; 
+    
+    padding: 0; 
+    overflow: hidden; /* Cắt bỏ mọi thứ lòi ra ngoài */
+    z-index: 9000; cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* KHI HOVER: MỞ RỘNG */
+.mini-player:hover {
+    width: 480px; /* Chiều rộng cố định */
+    max-width: 90vw; /* Không bao giờ vượt quá chiều ngang màn hình */
+    padding: 0 20px;
+    border-radius: 16px;
+    
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.25);
+    
+    justify-content: flex-start; 
+    gap: 15px; 
+}
+
+
+/* --- PHẦN 1: SÓNG NHẠC --- */
+.music-bars {
+    height: 20px; 
+    width: 24px;
+    display: flex; 
+    align-items: flex-end; 
+    justify-content: space-between;
+    flex-shrink: 0; /* Không bị bóp méo */
+    margin-top: 2px; 
+}
+.music-bars span {
+    width: 10px; 
+    background: #6366f1; border-radius: 3px;
+    transform-origin: bottom;
+    animation: bounce 1s infinite ease-in-out;
+}
+.music-bars span:nth-child(1) { height: 60%; animation-delay: 0s; }
+.music-bars span:nth-child(2) { height: 100%; animation-delay: 0.2s; }
+.music-bars span:nth-child(3) { height: 50%; animation-delay: 0.4s; }
+.music-bars span:nth-child(4) { height: 70%; animation-delay: 0.1s; }
+.music-bars span:nth-child(5) { height: 90%; animation-delay: 0.3s; }
+.music-bars span:nth-child(6) { height: 80%; animation-delay: 0.5s; }
+
+@keyframes bounce { 
+    0%, 100% { transform: scaleY(0.4); } 
+    50% { transform: scaleY(1); } 
+}
+
+
+/* --- PHẦN 2: THÔNG TIN (FIX TRÀN LỀ TẠI ĐÂY) --- */
+.mini-info {
+    /* 1. Chiếm hết khoảng trống còn lại */
+    flex: 1; 
+    
+    /* 2. QUAN TRỌNG NHẤT: Cho phép co nhỏ hơn nội dung bên trong */
+    min-width: 0; 
+    
+    display: flex; flex-direction: column; justify-content: center;
+    opacity: 0; width: 0; 
+    transition: opacity 0.2s ease;
+    
+    /* Khoảng cách với nút bấm */
+    margin-right: 15px; 
+    
+    /* 3. Ẩn phần thừa */
+    overflow: hidden; 
+}
+.mini-player:hover .mini-info { opacity: 1; width: auto; }
+
+#mini-title { 
+    font-weight: 700; font-size: 14px; color: #1e293b; 
+    line-height: 1.3;
+    
+    /* 4. Cắt chữ thành dấu ... */
+    width: 100%; /* Bắt buộc */
+    display: block; /* Bắt buộc */
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    
+    margin-bottom: 2px;
+}
+.time-track { font-size: 11px; color: #64748b; font-family: monospace; white-space: nowrap; }
+
+
+/* --- PHẦN 3: NÚT BẤM --- */
+.mini-btn {
+    flex-shrink: 0; /* Cấm co lại */
+    width: 36px; height: 36px; border-radius: 50%; border: none;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    
+    opacity: 0; transform: scale(0.5); width: 0; margin: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.mini-player:hover .mini-btn {
+    opacity: 1; transform: scale(1); width: 36px; 
+}
+
+/* ĐẨY NÚT RA XA */
+.mini-player:hover #loop-btn {
+    margin-left: auto !important; 
+}
+.mini-player:hover #mini-play-btn {
+    margin-left: 8px;
+}
+
+#loop-btn {
+    background: transparent; color: #94a3b8; font-size: 14px;
+}
+#loop-btn:hover { background: #f1f5f9; color: #6366f1; }
+#loop-btn.active { color: #6366f1; background: rgba(99, 102, 241, 0.15); }
+
+#mini-play-btn {
+    background: #6366f1; color: white; font-size: 14px;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+}
+#mini-play-btn:hover { background: #4f46e5; transform: scale(1.1); }

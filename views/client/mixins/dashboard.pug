@@ -1,0 +1,71 @@
+#dashboard-overlay.dashboard-overlay
+  .dashboard-glass-box
+    button#close-dashboard.close-btn(title="Close")
+      i.fa-solid.fa-xmark
+
+    //- ================= CỘT TRÁI (SIDEBAR) =================
+    .dash-sidebar
+      .logo-area
+        i.fa-solid.fa-layer-group
+        span ICRAM
+      
+      ul.dash-menu
+        li#nav-profile.active
+          i.fa-solid.fa-user
+          | Profile
+        li#nav-tasks
+          i.fa-solid.fa-list-check
+          | Tasks
+        li#nav-themes
+          i.fa-regular.fa-file
+          | Theme
+        li#nav-analytics
+          i.fa-solid.fa-chart-pie
+          | Analytics
+        li#nav-notifications
+          i.fa-solid.fa-bell
+          | Notifications
+      
+      .upgrade-box
+        h3 Upgrade
+        p Go Premium to unlock all features!
+        button Go Pro
+
+    //- ================= CỘT PHẢI (CONTENT) =================
+    .dash-content
+      .dash-header
+        input(type="text" placeholder="Search tasks, events...")
+        .user-profile
+          .avatar
+            if user && user.avatar
+              img(src=user.avatar alt="Avatar" style="width:100%; border-radius:50%;")
+            else
+              i.fa-solid.fa-user
+          span.font-weight-bold #{user ? user.fullName : 'Guest'}
+      
+      #dynamic-content-area
+        
+        //- 1. VIEW: TRANG CHỦ (Hiển thị mặc định)
+        #view-home.view-section.fade-in
+          .welcome-banner
+            h2 Welcome Back, #{user ? user.fullName.split(' ')[0] : 'Friend'}! 👋
+            p Check your daily tasks and schedules to stay on track.
+            button#banner-new-task-btn.new-task-btn
+              span New Task
+            button.discover-btn Discover
+          
+          .stats-grid
+            .stat-card
+              h3 In Progress
+              h2#home-pending(style="color: #8B5CF6;") 0 
+            .stat-card
+              h3 Completed
+              h2#home-completed(style="color: #10B981;") 0
+
+        //- 2. VIEW: TRANG TASKS (Ẩn mặc định bằng class hidden)
+        #view-tasks.view-section.fade-in.hidden
+          //- ĐÍNH FILE PUG CỦA BẠN VÀO ĐÂY LÀ XONG!
+          include task-manager.pug
+          
+        #view-analytics.view-section.fade-in.hidden 
+          include analytics.pug

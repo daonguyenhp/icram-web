@@ -1,0 +1,69 @@
+extends ../../layouts/default.pug
+
+block append styles
+    link(rel="stylesheet", href="/css/pages/auth.css")
+    link(rel="stylesheet", href="/css/partials/header.css")
+    link(rel="stylesheet", href="/css/mixins/alert.css")
+
+    style.
+        body {
+            background-image: url('../../images/pages/auth/login-bg.svg') !important;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #f8fafc; /* Nền dự phòng */
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+        /* Làm cho cái Header nó không đè lên Form nữa */
+        .fixed-top {
+            position: absolute !important; 
+        }
+    
+block main
+
+  .auth-wrapper.mx-auto.d-flex
+    // Banner Bên Trái
+    .auth-banner
+      h2 ICRAM Dashboard
+      p Welcome Back! Let's Get You In and Stay Connected.
+    
+    // Form Bên Phải
+    .auth-content
+      .auth-header
+        h1 Login
+        p Enter your details to access your workspace.
+      
+      a.btn-google(href="/auth/google")
+        i.fa-brands.fa-google
+        |  Continue with Google
+      
+      .social-divider
+        span or sign in with email
+      
+      form.auth-form(action="/auth/local", method="POST")
+        .input-group
+          label(for="email") Email
+          input#email(type="email", name="email", placeholder="username@gmail.com", required)
+        
+        .input-group
+          label(for="password") Password
+          .password-wrapper
+            input#password(type="password", name="password", placeholder="••••••••", required, style="width: 100%;")
+            i.fa-regular.fa-eye-slash.toggle-password(toggle="#password")
+
+        .auth-options
+          label(style="display: flex; align-items: center; gap: 8px; font-weight: 400; color: #64748b; margin: 0;")
+            input(type="checkbox", style="width: auto;")
+            |  Remember me
+          a(href="#") Forgot Password?
+        
+        button.btn-submit(type="submit") Sign In
+      
+      .auth-footer
+        | Don’t have an account yet? 
+        a(href="/signup") Register for free
+  
+  script(type="module", src="/js/helpers/alert.js")
+  script(type="module", src="/js/pages/auth/main.js")

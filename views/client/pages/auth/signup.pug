@@ -1,0 +1,85 @@
+extends ../../layouts/default.pug
+
+block append styles
+    link(rel="stylesheet", href="/css/pages/auth.css")
+    link(rel="stylesheet", href="/css/partials/header.css")
+    link(rel="stylesheet", href="/css/mixins/alert.css")
+
+    style.
+        body {
+            background-image: url('../../images/pages/auth/signup-bg.svg') !important;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #f8fafc;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+        /* Đảm bảo Header không chiếm không gian của Form */
+        .fixed-top { position: absolute !important; }
+
+block main
+
+    //- Sếp để row-reverse để Banner nhảy sang phải, Form nhảy sang trái cho "đổi gió"
+    .auth-wrapper.mx-auto.d-flex(style="flex-direction: row-reverse;")
+        
+        // --- Banner Bên Phải ---
+        .auth-banner
+            h2 Join ICRAM Team
+            p Let's build something amazing together. 
+            p Start your journey with our powerful focus tools today.
+        
+        // --- Form Bên Trái ---
+        .auth-content
+            .auth-header
+                h1 Create Account
+                p Sign up in seconds to start your workspace.
+            
+            //- Nút đăng ký nhanh bằng Google
+            a.btn-google(href="/auth/google")
+                i.fa-brands.fa-google
+                |   Sign up with Google
+            
+            .social-divider
+                span or use your email
+            
+            //- Form Đăng ký gửi dữ liệu về route /api/register
+            form.auth-form#registerForm(action="/api/register", method="POST")
+                .input-group
+                    label(for="fullName") Full Name
+                    input#fullName(type="text", name="fullName", placeholder="Enter your full name", required)
+                
+                .input-group
+                    label(for="email") Email Address
+                    input#email(type="email", name="email", placeholder="icram@gmail.com", required)
+                
+                .input-group(style="position: relative;")
+                    label(for="password") Password
+                    input#password(type="password", name="password", placeholder="Create a strong password", required)
+                    i.fa-regular.fa-eye-slash.toggle-password(toggle="#password")
+
+                .input-group(style="position: relative;")
+                    label(for="confirmPassword") Confirm Password
+                    input#confirmPassword(type="password", name="confirmPassword", placeholder="Repeat your password", required)
+                    i.fa-regular.fa-eye-slash.toggle-password(toggle="#confirmPassword")
+                    
+                    span#passwordError(style="color: #ef4444; font-family: 'Poppins', sans-serif; font-size: 13px; display: none; margin-top: 5px; font-weight: 500;") 
+                        i.fa-solid.fa-triangle-exclamation
+                        |   The password doesn't match!
+                
+                //- Checkbox đồng ý điều khoản
+                .auth-options
+                    label(style="display: flex; align-items: center; gap: 8px; font-weight: 400; color: #64748b; margin: 0;")
+                        input(type="checkbox", style="width: auto;", required)
+                        |   I agree to the Terms & Privacy Policy
+                
+                button.btn-submit(type="submit") Create Account
+            
+            //- Footer chuyển hướng về Login
+            .auth-footer
+                | Already have an account? 
+                a(href="/login") Log In
+
+    script(type="module", src="/js/helpers/alert.js")
+    script(type="module", src="/js/pages/auth/main.js")

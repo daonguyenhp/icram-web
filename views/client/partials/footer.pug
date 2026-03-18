@@ -1,0 +1,55 @@
+footer.custom-footer
+    .container
+        .row.gy-5
+            //- Cột 1: Logo & Slogan
+            .col-lg-4.col-md-12
+                a.footer-logo(href="/") Focus Web :3
+                p.footer-desc
+                    | Master your attention in a distracted world. 
+                    | Join millions of users entering the flow state every day.
+                
+                //- Social Media Icons
+                .social-links
+                    a.social-btn(href="#")
+                        i.fa-brands.fa-instagram
+                    a.social-btn(href="#")
+                        i.fa-brands.fa-twitter
+                    a.social-btn(href="#")
+                        i.fa-brands.fa-linkedin-in
+                    a.social-btn(href="#")
+                        i.fa-brands.fa-tiktok
+
+            //- Cột 2: Product
+            .col-lg-2.col-6
+                h5.footer-heading Product
+                ul.footer-list
+                    li: a.footer-link(href="#") Features
+                    li: a.footer-link(href="#") Pricing
+                    li: a.footer-link(href="#") Download
+                    li: a.footer-link(href="#") Integrations
+
+            //- Cột 3: Company
+            .col-lg-2.col-6
+                h5.footer-heading Company
+                ul.footer-list
+                    li: a.footer-link(href="#") About Us
+                    li: a.footer-link(href="#") Blog
+                    li: a.footer-link(href="#") Careers
+                    li: a.footer-link(href="#") Contact
+
+            //- Cột 4: Newsletter (Đăng ký nhận tin)
+            .col-lg-4.col-md-12
+                h5.footer-heading Stay in the loop
+                p.footer-text Get the latest tips on productivity.
+                
+                form.footer-form
+                    input.form-control(type="email", placeholder="Enter your email")
+                    button.btn-submit(type="submit")
+                        i.fa-solid.fa-arrow-right
+
+        //- Dòng bản quyền
+        .footer-bottom
+            p &copy; 2024 Focus Web. All rights reserved.
+            .legal-links
+                a(href="#") Privacy Policy
+                a(href="#") Terms of Service

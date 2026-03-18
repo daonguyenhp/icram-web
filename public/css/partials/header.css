@@ -1,0 +1,248 @@
+/* 1. THANH NAVBAR  */
+.custom-navbar {
+    padding: 15px 0;
+    transition: all 0.4s ease;
+    
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+}
+
+.custom-navbar.scrolled {
+    padding: 10px 0;
+}
+
+/* 2. LOGO */
+.logo {
+    font-size: 32px; 
+    font-weight: 700;
+    letter-spacing: 2px; 
+    margin-right: 30px;
+    color: #1e293b !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 3. MENU LINKS */
+.nav-links .nav-link {
+    font-size: 18px; 
+    font-weight: 700;
+    color: #475569 !important;
+    margin: 0 20px; /* Dãn cách xa hơn */
+    padding: 10px 0 !important;
+    position: relative;
+    transition: color 0.3s ease;
+    text-transform: capitalize;
+}
+
+.nav-links .nav-link:hover {
+    color: #ff6b6b !important; /* Hover đổi màu Hồng Cam */
+}
+
+/* Gạch chân màu hồng */
+.nav-links .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 50%;
+    /* Gradient Hồng - Tím */
+    background: linear-gradient(90deg, #FFC4C4, #9FDCD6);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+.nav-links .nav-link:hover::after {
+    width: 100%;
+}
+
+/* 4. BUTTONS */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* --- 1. Nút Log In --- */
+.login-signup-btn[href="/login"] {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e293b; 
+    padding: 12px 25px;
+    border-radius: 12px;
+    transition: all 0.3s ease; 
+}
+
+.login-signup-btn[href="/login"]:hover {
+    /* Đổi màu chữ sang xanh Indigo  */
+    color: #6366f1;
+    /* Thêm nền xanh siêu nhạt để làm nổi bật */
+    background-color: rgba(99, 102, 241, 0.1);
+}
+
+/* --- 2. Nút Sign Up --- */
+.login-signup-btn[href="/signup"] {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    
+    /* Gradient gốc (Hồng - Cam) */
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    
+    padding: 14px 35px;
+    border-radius: 50px;
+    
+    /* Bóng đổ gốc (Hồng) */
+    box-shadow: 0 10px 25px -5px rgba(255, 107, 107, 0.4);
+    
+    /* Hiệu ứng nảy khi hover */
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 2px solid transparent; /* Để dành cho việc tránh bị giật khi hover */
+}
+
+.login-signup-btn[href="/signup"]:hover {
+    /* Bay lên và phóng to nhẹ */
+    transform: translateY(-4px) scale(1.05);
+    
+    /* Đổi nền sang Gradient Xanh (Indigo -> Cyan) giống đồng hồ */
+    background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+    
+    /* Đổi bóng đổ sang màu xanh Cyan cho đồng bộ */
+    box-shadow: 0 15px 35px -5px rgba(6, 182, 212, 0.5);
+    
+    /* Đảm bảo chữ vẫn màu trắng */
+    color: white;
+}
+
+/* Icon menu mobile */
+.navbar-toggler {
+    border: none;
+    font-size: 30px; /* Icon to hơn */
+    color: #1e293b;
+    padding: 5px;
+}
+.navbar-toggler:focus { box-shadow: none; }
+
+/*5. Hiển thị thông tin user*/
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+}
+
+.user-greeting {
+    display: block;
+    min-width: 0;
+
+    font-size: 18px; 
+    font-weight: 700;
+    color: #1e293b; 
+    
+    /* Xử lý cắt chữ khi tên quá dài */
+    max-width: 180px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 16px; 
+    font-weight: 700;
+    color: white !important;
+    
+    /* Gradient Đỏ - Cam (Báo hiệu hành động thoát) */
+    background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+    
+    padding: 12px 25px;
+    border-radius: 50px; /* Bo tròn viên thuốc */
+    
+    box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.4);
+
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-logout:hover {
+    /* Bay lên và phóng to nhẹ */
+    transform: translateY(-4px) scale(1.05);
+    
+    background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+    box-shadow: 0 15px 35px -5px rgba(6, 182, 212, 0.5);
+    color: white;
+}
+
+/* =========================================
+   RESPONSIVE (XỬ LÝ MÀN HÌNH NHỎ)
+   ========================================= */
+
+/* 1. Laptop (Dưới 1400px) */
+@media (max-width: 1400px) {
+    .user-greeting { font-size: 16px; max-width: 80px; }
+    .btn-logout { padding: 10px 20px; font-size: 15px; }
+    .logo { font-size: 26px; }
+    .nav-links .nav-link { font-size: 16px; margin: 0 10px; }
+    .login-signup-btn[href="/signup"] { padding: 10px 25px; font-size: 16px; }
+}
+
+/* 2. Tablet & Mobile (Dưới 992px) */
+@media (max-width: 992px) {
+
+    .user-info {
+        flex-direction: column; 
+        width: 100%; 
+        gap: 15px; 
+    }
+
+    .user-greeting {
+        max-width: 100%; /* Cho phép tên trải dài hết cỡ trên mobile */
+        text-align: center;
+        font-size: 20px; /* Chữ to ra cho dễ đọc giống Menu Links */
+    }
+
+    .btn-logout {
+        width: 100%; 
+        padding: 15px 0;
+        font-size: 18px;
+    }
+
+    .custom-navbar { padding: 15px 0; }
+
+    .navbar-collapse {
+        background: white;
+        position: absolute;
+        top: 100%; left: 0; width: 100%;
+        padding: 30px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        border-radius: 0 0 30px 30px;
+        border-top: 1px solid #eee;
+    }
+
+    .nav-links { margin: 0 0 25px 0; text-align: center; }
+    
+    .nav-links .nav-link {
+        font-size: 20px; /* Mobile chữ to dễ bấm */
+        padding: 15px 0 !important;
+        margin: 0;
+        border-bottom: 1px solid #f8fafc;
+        display: block;
+    }
+    .nav-links .nav-link::after { display: none; }
+
+    .nav-actions { flex-direction: column; width: 100%; gap: 15px; }
+    
+    .login-signup-btn[href="/login"],
+    .login-signup-btn[href="/signup"] {
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+}

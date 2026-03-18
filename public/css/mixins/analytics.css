@@ -1,0 +1,166 @@
+/* =========================================
+   1. STATS CARD (Format dùng chung với Task Manager)
+   ========================================= */
+
+.analytics-container {
+    padding: 20px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.analytics-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 25px 0;
+}
+
+.stats-row {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 30px;
+    /* Chia cột bằng inline-style trong Pug rồi nên ở đây ko cần set cứng 1fr 1fr nữa */
+}
+
+.stats-row .stat-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.02);
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stats-row .stat-card:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+/* Các màu Icon */
+.icon-purple { background: rgba(139, 92, 246, 0.1); color: #8B5CF6; }
+.icon-green { background: rgba(16, 185, 129, 0.1); color: #10B981; }
+.icon-red { background: rgba(239, 68, 68, 0.1); color: #ef4444; } /* Bổ sung cho Focus Time */
+
+.stat-info { flex: 1; }
+.stat-label { display: block; font-size: 13px; color: #6b7280; font-weight: 600; margin-bottom: 2px; }
+.stat-number { font-size: 23px; font-weight: 700; color: #1f2937; margin: 0; line-height: 1.2; }
+
+
+/* =========================================
+   2. KHU VỰC BIỂU ĐỒ (CHART.JS)
+   ========================================= */
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Biểu đồ cột 2 phần, tròn 1 phần */
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.chart-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.chart-card h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.canvas-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+
+/* =========================================
+   3. KHU VỰC AI MENTOR
+   ========================================= */
+
+.ai-mentor-card {
+    /* Đồng bộ tone màu Gradient của nút Add Task */
+    background: linear-gradient(135deg, #FFC4C4 0%, #5038BA 100%);
+    border-radius: 20px;
+    padding: 25px 30px;
+    box-shadow: 0 8px 25px rgba(80, 56, 186, 0.2);
+    color: #ffffff;
+}
+
+.ai-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.ai-header h3 { 
+    margin: 0; 
+    color: #ffffff; 
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ai-header i { 
+    font-size: 24px; 
+    color: #FFD700; 
+}
+
+#ai-insight-text {
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-ai {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 40px; 
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-ai:hover { 
+    background: rgba(255, 255, 255, 0.3); 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   4. RESPONSIVE (MOBILE/TABLET)
+   ========================================= */
+
+@media (max-width: 992px) {
+    .charts-grid {
+        grid-template-columns: 1fr; /* Rớt xuống hàng dọc trên màn nhỏ */
+    }
+}

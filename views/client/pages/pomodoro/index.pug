@@ -1,0 +1,79 @@
+extends ../../layouts/default-new.pug
+
+include ../../mixins/follow-us.pug
+
+block append styles
+    //- CSS chuyên biệt cho trang Focus
+    link(rel="stylesheet", href="/css/pages/pomodoro.css") 
+    //- Các CSS dùng chung (Layout, Music, Task Bar, Dashboard)
+    link(rel="stylesheet", href="/css/layout-timer.css")
+    link(rel="stylesheet", href="/css/partials/music-player.css")
+    link(rel="stylesheet", href="/css/partials/task-bar.css")
+    link(rel="stylesheet", href="/css/mixins/dashboard.css")
+    link(rel="stylesheet", href="/css/mixins/task-manager.css")
+    link(rel="stylesheet", href="/css/mixins/alert.css")
+    link(rel="stylesheet", href="/css/mixins/analytics.css")
+
+block main
+    .main-layout.container-fluid.d-flex.flex-column.justify-content-center.align-items-center.min-vh-100.position-relative
+        
+        +followUs()
+        
+        include ../../partials/music-player.pug
+        include ../../partials/right-header.pug
+
+        .row.w-100.justify-content-center
+            .col-12.col-lg-10.d-flex.flex-column.align-items-center
+                
+                //- Header Text
+                .focus-content.text-center.mb-4
+                    p.focus-subtitle Stay productive, stay focused
+
+                //- Main Timer Card
+                .focus-container
+                    //- Nút Tabs (Focus / Short Break / Long Break)
+                    .focus-controls
+                        button#btn-focus.tab-btn-action Focus
+                        button#btn-short.tab-btn Short Break
+                        button#btn-long.tab-btn Long Break
+
+                    //- Vòng tròn đếm ngược SVG
+                    .focus-timers.position-relative
+                        svg.progress-ring(viewBox="0 0 378 378" width="378" height="378")
+                            circle.progress-ring__circle-bg(
+                                stroke="#e6e6e6" stroke-width="15" fill="transparent" 
+                                r="180" cx="189" cy="189"
+                            )
+                            circle#progress-circle.progress-ring__circle(
+                                stroke="#1f2937" stroke-width="15" fill="transparent" 
+                                r="180" cx="189" cy="189"
+                            )
+
+                        //- Chữ hiển thị thời gian bên trong vòng tròn
+                        .timer-text
+                            h1#time-display 25:00
+                            p#mode-text Focus Time
+
+                    //- Các nút điều khiển
+                    .controls-btn
+                        button#start-btn.start-btn
+                            i.fa-solid.fa-play.me-2
+                            | Start
+                        button#reset-btn.reset-btn
+                            i.fa-solid.fa-rotate-right
+
+                //- Khoảng trống để chứa thanh Quick Task Bar
+                #task-bar-slot.mt-3
+
+        include ../../partials/task-bar.pug
+        include ../../mixins/dashboard.pug
+    
+    script(type="module", src='/js/pages/main-timer.js')
+
+    //- GỌI CLASS POMODORO TIMER TỪ FILE JS BÊN NGOÀI
+    script(type="module").
+        import { PomodoroTimer } from '/js/pages/pomodoro/pomodoro.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            new PomodoroTimer();
+        });

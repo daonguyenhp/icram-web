@@ -1,0 +1,58 @@
+button#btn-music.top-left-icons.icon-btn(title="Music")
+  i.fa-solid.fa-headphones
+
+#music-overlay.music-overlay
+  .music-box
+    //- Header Popup
+    .music-header
+      h3#music-title Select Source
+      button#close-music.close-music
+        i.fa-solid.fa-xmark
+
+    //- 1. View Chọn Nguồn
+    #music-source-view.source-grid
+      #btn-source-youtube.source-item
+        i.fa-brands.fa-youtube.youtube-icon
+        span YouTube
+      
+      .source-item(style="opacity: 0.5; cursor: not-allowed;")
+        i.fa-brands.fa-spotify.spotify-icon
+        span Spotify (Soon)
+
+    //- 2. View Nhập Link
+    #music-input-view.input-view(style="display: none;")
+      p Paste YouTube Video or Playlist Link:
+      input#yt-link-input.music-input(type="text", placeholder="https://www.youtube.com/watch?v=...")
+      
+      button#btn-play-yt.play-btn Play Music
+      button#btn-back-source.back-btn Back to sources
+
+    //- 3. View Player (Iframe)
+    #music-player-view.player-view(style="display: none;")
+      #yt-iframe-container
+      button#btn-change-music.back-btn Change Music
+
+//- MINI PLAYER (Nằm cố định góc trái dưới)
+#mini-player.mini-player.hidden
+  .mini-info
+    #music-bars-animation.music-bars(style="opacity: 0.3")
+      span
+      span
+      span
+      span 
+      span
+      span
+    .info-text
+      span#mini-title Loading...
+      .time-track
+        span#current-time 0:00
+        |  / 
+        span#duration 0:00
+  
+  //- Nút Loop
+  button#loop-btn.mini-btn(title="Loop One")
+    i.fa-solid.fa-repeat
+
+  //- Nút Play/Pause nhỏ
+  button#mini-play-btn.mini-btn
+    i.fa-solid.fa-pause

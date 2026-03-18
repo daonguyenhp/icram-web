@@ -1,0 +1,68 @@
+/* task-bar.css */
+.task-bar {
+    width: min(100%, 600px); 
+    height: 60px; 
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    display: flex; 
+    align-items: center; 
+    padding: 5px 10px 5px 25px;
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.task-bar:focus-within {
+    background: white; 
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15); 
+    transform: translateY(-2px);
+}
+
+.task-input {
+    flex: 1; 
+    background: transparent; 
+    border: none; 
+    outline: none;
+    font-family: var(--font-main); 
+    font-size: 16px; 
+    color: var(--primary-dark); 
+    font-weight: 500;
+}
+
+.task-input::placeholder { 
+    color: var(--text-light); 
+}
+
+.task-add-btn {
+    width: 40px; 
+    height: 40px; 
+    opacity: 0; 
+    pointer-events: none;
+    border-radius: 50%; 
+    border: none; 
+    background: var(--primary-color); 
+    color: white;
+    cursor: pointer; 
+    font-size: 18px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    transform: scale(0); 
+    margin-left: 0; 
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.task-bar:focus-within .task-add-btn {
+    opacity: 1; 
+    transform: scale(1); 
+    pointer-events: all; 
+    margin-left: 10px;
+}
+
+.task-add-btn:hover { 
+    background: var(--primary-hover); 
+    transform: scale(1.1) rotate(90deg); 
+}
