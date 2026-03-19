@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true })); // Để đọc dữ liệu t�
 const routeAdmin = require("./routes/admin/index.route");
 const route = require("./routes/client/index.route");
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 app.set("views", "./views");
 app.set("view engine", "pug");
@@ -49,6 +49,6 @@ routeAdmin(app);
 route(app);
 // End Route
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`App listening on port ${port}`);
 });
